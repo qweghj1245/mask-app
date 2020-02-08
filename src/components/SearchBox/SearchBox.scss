@@ -1,0 +1,19 @@
+.search-box {
+  padding: 16px 20px;
+  border-bottom: solid 1px #eaeaea;
+  .tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 84px);
+    grid-gap: 12px;
+    margin-top: 16px;
+  }
+  .sub {
+    text-align: left;
+    margin-top: 12px;
+    & > span {
+      color: #ff973b;
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+.tab {
+  cursor: pointer;
+  border-radius: 7px;
+  border: 1px solid #EAEAEA;
+  padding: 9px 10px;
+  color: #CCCCCC;
+  &.active {
+    background: #D65600;
+    color: white;
+  }
+}

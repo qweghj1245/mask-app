@@ -1,0 +1,37 @@
+.image-wrapper {
+  width: 100%;
+  position: relative;
+  padding: 8px 0 14px 20px;
+  height: 136px;
+  & > img {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  & > div {
+    text-align: left;
+    &:nth-child(2) {
+      color: white;
+      text-shadow: 0px 3px 6px #00000029;
+    }
+    &:nth-child(3) {
+      color: white;
+      text-shadow: 0px 3px 6px #00000029;
+      font-size: 36px;
+    }
+    &:nth-child(4) {
+      color: black;
+      margin-bottom: 4px;
+      & > span {
+        color: #C80000;
+        font-weight: bold;
+      }
+    }
+    &:nth-child(5) {
+      color: white;
+      font-size: 12px;
+    }
+  }
+}
