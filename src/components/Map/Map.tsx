@@ -1,4 +1,4 @@
-import React, { useEffect, FunctionComponent } from 'react';
+import React, { useEffect, FunctionComponent, useState, useRef } from 'react';
 import './Map.scss';
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
@@ -37,18 +37,18 @@ const Map: FunctionComponent<Props> = ({ allPlace, latitude, longitude }) => {
       return greenIcon;
     }
   };
-  
+  const map = useRef<any>(null);
   useEffect(() => {
     let position = new L.LatLng(latitude, longitude);
     if (allPlace.length&&latitude&&longitude) {
-      const map = L.map('map', {
+      map.current = L.map('map', {
         center: position,
-        zoom: 15,
-      });
+        zoom: 18,
+      })
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
-      const cluster = new L.MarkerClusterGroup().addTo(map);
+      }).addTo(map.current);
+      const cluster = new L.MarkerClusterGroup().addTo(map.current);
       allPlace.forEach((item: any, idx: number) => {
         let itemPos = new L.LatLng(item.geometry.coordinates[1], item.geometry.coordinates[0]);
         const pop = L.popup({
@@ -81,6 +81,9 @@ const Map: FunctionComponent<Props> = ({ allPlace, latitude, longitude }) => {
           }
         }));
       })
+    }
+    return () => {
+      map.current.remove();
     }
   }, [allPlace, latitude, longitude]);
   return (
