@@ -22,8 +22,10 @@
       font-size: 36px;
     }
     &:nth-child(4) {
+      width: 225px;
       color: black;
       margin-bottom: 4px;
+      background: rgba(255, 255, 255, .3);
       & > span {
         color: #C80000;
         font-weight: bold;

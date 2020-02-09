@@ -1,48 +1,88 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, FunctionComponent } from 'react';
 import './Map.scss';
-import L from 'leaflet';
+import * as L from 'leaflet';
+import 'leaflet.markercluster';
+import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 import "leaflet/dist/leaflet.css";
 import iconRed from '../../assets/Icon_location_red.svg';
+import iconOrange from '../../assets/Icon_location_orange.svg';
+import iconGreen from '../../assets/Icon_location_green.svg';
 
-const Map = () => {
-  useEffect(() => {
-    let position = new L.LatLng(25.0861321, 121.4729058);
-    const map = L.map('map', {
-      center: position,
-      zoom: 15,
-    });
+interface Props {
+  allPlace: object[],
+  latitude: number,
+  longitude: number,
+}
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    const myIcon = L.icon({
+const Map: FunctionComponent<Props> = ({ allPlace, latitude, longitude }) => {
+  const Icon = (adult: number, child: number) => {
+    const allMask = adult + child;
+    const redIcon = L.icon({
       iconUrl: iconRed,
       iconAnchor: [25, 15],
     });
-    const pop = L.popup({
-      minWidth: 209,
-      maxWidth: 209,
-    })
-      .setLatLng(position)
-      .setContent(`
-        <div>
-          <div class='font-bold fz-16 text-333 mb-4'>合康健保藥局</div>
-          <div class='fz-12 text-left mb-4'>24154新北市三重區三和路四段384號</div>
-          <div class='fz-12 text-left mb-4'>營業時間｜9:00 - 22:30</div>
-          <div class='fz-12 text-left mb-4'>連絡電話｜02 2286 8999</div>
-          <div class='fz-12 text-left text-CCC mb-8'>資訊更新於 4分鐘前</div>
-          <div class='flex-row mb-8'>
-            <div class='orange mr-8'>成人口罩 72個</div>
-            <div class='yellow'>兒童口罩 42個</div>
-          </div>
-          <div class="google">Google 路線導航</div>
-        </div>
-      `);
-    L.marker(position, { icon: myIcon }).addTo(map).bindPopup(pop).on('click', function () {
-      pop.openPopup();
+    const orangeIcon = L.icon({
+      iconUrl: iconOrange,
+      iconAnchor: [25, 15],
     });
-  }, []);
+    const greenIcon = L.icon({
+      iconUrl: iconGreen,
+      iconAnchor: [25, 15],
+    });
+    if (allMask < 50) {
+      return redIcon;
+    } else if (allMask >= 50 && allMask < 100) {
+      return orangeIcon;
+    } else {
+      return greenIcon;
+    }
+  };
+  
+  useEffect(() => {
+    let position = new L.LatLng(latitude, longitude);
+    if (allPlace.length&&latitude&&longitude) {
+      const map = L.map('map', {
+        center: position,
+        zoom: 15,
+      });
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+      const cluster = new L.MarkerClusterGroup().addTo(map);
+      allPlace.forEach((item: any, idx: number) => {
+        let itemPos = new L.LatLng(item.geometry.coordinates[1], item.geometry.coordinates[0]);
+        const pop = L.popup({
+          minWidth: 209,
+          maxWidth: 209,
+        })
+          .setLatLng(itemPos)
+          .setContent(`
+            <div>
+              <div class='font-bold fz-16 text-333 mb-4'>${item.name}</div>
+              <div class='fz-12 text-left mb-4'>${item.address}</div>
+              <div class='fz-12 text-left mb-4'>營業時間｜${item.note || '無標示'}</div>
+              <div class='fz-12 text-left mb-4'>連絡電話｜${item.phone}</div>
+              <div class='fz-12 text-left text-CCC mb-8'>資訊更新於 ${item.updated}</div>
+              <div class='flex-row mb-8'>
+                <div class='orange mr-8'>成人口罩 ${item.adultCount}個</div>
+                <div class='yellow'>兒童口罩 ${item.childCount}個</div>
+              </div>
+              <div class="google google-${idx}">Google 路線導航</div>
+            </div>
+          `);
+        cluster.addLayer(L.marker(itemPos, { icon: Icon(item.mask_adult, item.mask_child) }).bindPopup(pop).on('click', function () {
+          pop.openPopup();
+        }).on('popupopen', () => {
+          const google = document.querySelector(`.google-${idx}`);
+          if (google) {
+            google.addEventListener('click', () => {
+              window.open(`https://www.google.com/maps/search/?api=1&query=${item.geometry.coordinates[1]},${item.geometry.coordinates[0]}`);
+            });
+          }
+        }));
+      })
+    }
+  }, [allPlace, latitude, longitude]);
   return (
     <div id="map"></div>
   )

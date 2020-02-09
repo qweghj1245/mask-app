@@ -5,9 +5,10 @@ import './PlaceBox.scss';
 interface Props {
   place: any,
   isSelect: string,
+  setPosition: any,
 }
 
-const PlaceBox: FunctionComponent<Props> = ({ place, isSelect = '所有口罩' }) => {
+const PlaceBox: FunctionComponent<Props> = ({ place, isSelect = '所有口罩', setPosition }) => {
   const allMask = (): number => {
     return place.adultCount + place.childCount;
   }
@@ -16,7 +17,7 @@ const PlaceBox: FunctionComponent<Props> = ({ place, isSelect = '所有口罩' }
     const all = adult + child;
     if (all > 100) {
       return 'green';
-    } else if (all > 50 && all < 100) {
+    } else if (all >= 50 && all < 100) {
       return 'oranges';
     } else {
       return 'red';
@@ -24,7 +25,7 @@ const PlaceBox: FunctionComponent<Props> = ({ place, isSelect = '所有口罩' }
   }
 
   return (
-    <div className='place-box'>
+    <div className='place-box' onClick={() => setPosition(place)}>
       <div className='font-bold fz-16 text-333 mb-4'>{place.title}</div>
       <div className='mb-4'>{place.address}</div>
       <div className='fz-12 mb-8'>營業時間｜{place.note||'無標示'}</div>
