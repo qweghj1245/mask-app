@@ -1,30 +1,30 @@
 {
   "files": {
-    "main.css": "/qweghj1245/mask-app/static/css/main.fd84a144.chunk.css",
-    "main.js": "/qweghj1245/mask-app/static/js/main.90e13e11.chunk.js",
-    "main.js.map": "/qweghj1245/mask-app/static/js/main.90e13e11.chunk.js.map",
-    "runtime-main.js": "/qweghj1245/mask-app/static/js/runtime-main.05071f7d.js",
-    "runtime-main.js.map": "/qweghj1245/mask-app/static/js/runtime-main.05071f7d.js.map",
-    "static/css/2.103ba269.chunk.css": "/qweghj1245/mask-app/static/css/2.103ba269.chunk.css",
-    "static/js/2.2cb1a79c.chunk.js": "/qweghj1245/mask-app/static/js/2.2cb1a79c.chunk.js",
-    "static/js/2.2cb1a79c.chunk.js.map": "/qweghj1245/mask-app/static/js/2.2cb1a79c.chunk.js.map",
-    "index.html": "/qweghj1245/mask-app/index.html",
-    "precache-manifest.ab7409d006c54d0f2eff292b9dcbbb59.js": "/qweghj1245/mask-app/precache-manifest.ab7409d006c54d0f2eff292b9dcbbb59.js",
-    "service-worker.js": "/qweghj1245/mask-app/service-worker.js",
-    "static/css/2.103ba269.chunk.css.map": "/qweghj1245/mask-app/static/css/2.103ba269.chunk.css.map",
-    "static/css/main.fd84a144.chunk.css.map": "/qweghj1245/mask-app/static/css/main.fd84a144.chunk.css.map",
-    "static/js/2.2cb1a79c.chunk.js.LICENSE.txt": "/qweghj1245/mask-app/static/js/2.2cb1a79c.chunk.js.LICENSE.txt",
-    "static/media/Icon_location_green.svg": "/qweghj1245/mask-app/static/media/Icon_location_green.b0317730.svg",
-    "static/media/Icon_location_orange.svg": "/qweghj1245/mask-app/static/media/Icon_location_orange.359a86cc.svg",
-    "static/media/Icon_location_red.svg": "/qweghj1245/mask-app/static/media/Icon_location_red.abc33708.svg",
-    "static/media/Icon_search.svg": "/qweghj1245/mask-app/static/media/Icon_search.7bf22ceb.svg",
-    "static/media/img_bg_orange.svg": "/qweghj1245/mask-app/static/media/img_bg_orange.0a9c376b.svg"
+    "main.css": "/mask-app/static/css/main.fd84a144.chunk.css",
+    "main.js": "/mask-app/static/js/main.1207699d.chunk.js",
+    "main.js.map": "/mask-app/static/js/main.1207699d.chunk.js.map",
+    "runtime-main.js": "/mask-app/static/js/runtime-main.bd804b4b.js",
+    "runtime-main.js.map": "/mask-app/static/js/runtime-main.bd804b4b.js.map",
+    "static/css/2.103ba269.chunk.css": "/mask-app/static/css/2.103ba269.chunk.css",
+    "static/js/2.2cb1a79c.chunk.js": "/mask-app/static/js/2.2cb1a79c.chunk.js",
+    "static/js/2.2cb1a79c.chunk.js.map": "/mask-app/static/js/2.2cb1a79c.chunk.js.map",
+    "index.html": "/mask-app/index.html",
+    "precache-manifest.8ed64def7fb9a75f920e34d761c8292a.js": "/mask-app/precache-manifest.8ed64def7fb9a75f920e34d761c8292a.js",
+    "service-worker.js": "/mask-app/service-worker.js",
+    "static/css/2.103ba269.chunk.css.map": "/mask-app/static/css/2.103ba269.chunk.css.map",
+    "static/css/main.fd84a144.chunk.css.map": "/mask-app/static/css/main.fd84a144.chunk.css.map",
+    "static/js/2.2cb1a79c.chunk.js.LICENSE.txt": "/mask-app/static/js/2.2cb1a79c.chunk.js.LICENSE.txt",
+    "static/media/Icon_location_green.svg": "/mask-app/static/media/Icon_location_green.b0317730.svg",
+    "static/media/Icon_location_orange.svg": "/mask-app/static/media/Icon_location_orange.359a86cc.svg",
+    "static/media/Icon_location_red.svg": "/mask-app/static/media/Icon_location_red.abc33708.svg",
+    "static/media/Icon_search.svg": "/mask-app/static/media/Icon_search.7bf22ceb.svg",
+    "static/media/img_bg_orange.svg": "/mask-app/static/media/img_bg_orange.0a9c376b.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.05071f7d.js",
+    "static/js/runtime-main.bd804b4b.js",
     "static/css/2.103ba269.chunk.css",
     "static/js/2.2cb1a79c.chunk.js",
     "static/css/main.fd84a144.chunk.css",
-    "static/js/main.90e13e11.chunk.js"
+    "static/js/main.1207699d.chunk.js"
   ]
 }
