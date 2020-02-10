@@ -74,6 +74,7 @@ const App = () => {
         longitude: pos.coords.longitude,
         init: true,
       });
+      setIsLoading(false);
     });
   }
 
@@ -92,7 +93,8 @@ const App = () => {
       setAllPlace(store);
     }).catch(() => {
       alert('系統發生錯誤，請再重試');
-    }).finally(() => setIsLoading(false));
+      setIsLoading(false);
+    });
   }
 
   const setPosition = (e:any) => {
