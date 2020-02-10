@@ -30,7 +30,9 @@ const HeadImage = () => {
       <img src={LeftImage} alt="" />
       <div>{moment(Date.now()).format('YYYY - MM - DD')}</div>
       <div>星期{days()}</div>
-      <div>身分證末一碼<span>偶數</span>字號者可購買口罩</div>
+      <div className='flex'>
+        <div className='inline'>身分證末一碼<span>偶數</span>字號者可購買口罩</div>
+      </div>
       <div>※一週限購一次，每次一人限購兩片</div>
     </div>
   );

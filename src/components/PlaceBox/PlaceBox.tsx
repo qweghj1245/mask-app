@@ -28,7 +28,7 @@ const PlaceBox: FunctionComponent<Props> = ({ place, isSelect = '所有口罩', 
     <div className='place-box' onClick={() => setPosition(place)}>
       <div className='font-bold fz-16 text-333 mb-4'>{place.title}</div>
       <div className='mb-4'>{place.address}</div>
-      <div className='fz-12 mb-8'>營業時間｜{place.note||'無標示'}</div>
+      <div className='fz-12 mb-8'>營業時間｜{place.note || '無標示'}</div>
       <div className='flex-row'>
         {
           (isSelect === '所有口罩' || isSelect === '成人口罩') && place.adultCount > 0 ?
@@ -48,7 +48,9 @@ const PlaceBox: FunctionComponent<Props> = ({ place, isSelect = '所有口罩', 
           allMask() === 0 ? <div className='no-mask mr-8'>口罩缺貨中</div> : null
         }
       </div>
-      <div className={`triangle ${maskResultColor(place.adultCount, place.childCount)}`}></div>
+      {
+        allMask() > 0 ? <div className={`triangle ${maskResultColor(place.adultCount, place.childCount)}`}></div> : null
+      }
     </div>
   );
 }

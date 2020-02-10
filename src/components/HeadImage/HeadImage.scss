@@ -3,6 +3,19 @@
   position: relative;
   padding: 8px 0 14px 20px;
   height: 136px;
+  .flex {
+    display: flex;
+    .inline {
+      width: initial;
+      color: black;
+      margin-bottom: 4px;
+      background: rgba(255, 255, 255, 0.3);
+      & > span {
+        color: #c80000;
+        font-weight: bold;
+      }
+    }
+  }
   & > img {
     width: 100%;
     position: absolute;
@@ -20,16 +33,6 @@
       color: white;
       text-shadow: 0px 3px 6px #00000029;
       font-size: 36px;
-    }
-    &:nth-child(4) {
-      width: 225px;
-      color: black;
-      margin-bottom: 4px;
-      background: rgba(255, 255, 255, .3);
-      & > span {
-        color: #C80000;
-        font-weight: bold;
-      }
     }
     &:nth-child(5) {
       color: white;
