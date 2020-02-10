@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/mask-app/static/css/main.fd84a144.chunk.css",
+    "main.css": "/mask-app/static/css/main.972f8ba7.chunk.css",
     "main.js": "/mask-app/static/js/main.1207699d.chunk.js",
     "main.js.map": "/mask-app/static/js/main.1207699d.chunk.js.map",
     "runtime-main.js": "/mask-app/static/js/runtime-main.bd804b4b.js",
@@ -9,10 +9,10 @@
     "static/js/2.2cb1a79c.chunk.js": "/mask-app/static/js/2.2cb1a79c.chunk.js",
     "static/js/2.2cb1a79c.chunk.js.map": "/mask-app/static/js/2.2cb1a79c.chunk.js.map",
     "index.html": "/mask-app/index.html",
-    "precache-manifest.8ed64def7fb9a75f920e34d761c8292a.js": "/mask-app/precache-manifest.8ed64def7fb9a75f920e34d761c8292a.js",
+    "precache-manifest.4cd5f5380e99574d2e10337f03b75211.js": "/mask-app/precache-manifest.4cd5f5380e99574d2e10337f03b75211.js",
     "service-worker.js": "/mask-app/service-worker.js",
     "static/css/2.103ba269.chunk.css.map": "/mask-app/static/css/2.103ba269.chunk.css.map",
-    "static/css/main.fd84a144.chunk.css.map": "/mask-app/static/css/main.fd84a144.chunk.css.map",
+    "static/css/main.972f8ba7.chunk.css.map": "/mask-app/static/css/main.972f8ba7.chunk.css.map",
     "static/js/2.2cb1a79c.chunk.js.LICENSE.txt": "/mask-app/static/js/2.2cb1a79c.chunk.js.LICENSE.txt",
     "static/media/Icon_location_green.svg": "/mask-app/static/media/Icon_location_green.b0317730.svg",
     "static/media/Icon_location_orange.svg": "/mask-app/static/media/Icon_location_orange.359a86cc.svg",
@@ -24,7 +24,7 @@
     "static/js/runtime-main.bd804b4b.js",
     "static/css/2.103ba269.chunk.css",
     "static/js/2.2cb1a79c.chunk.js",
-    "static/css/main.fd84a144.chunk.css",
+    "static/css/main.972f8ba7.chunk.css",
     "static/js/main.1207699d.chunk.js"
   ]
 }
