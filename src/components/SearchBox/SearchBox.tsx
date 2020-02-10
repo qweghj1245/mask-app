@@ -31,7 +31,7 @@ const SearchBox: FunctionComponent<Props> = ({ setTab, getTab, isSelect, search 
           tabGroup.map(tab => <Tabs key={tab} isTab={isSelect === tab} click={() => setTabs(tab)}>{tab}</Tabs>)
         }
       </div>
-      <div className="sub">附近尚有 <span>2</span> 家藥局供應口罩</div>
+      {/* <div className="sub">附近尚有 <span>2</span> 家藥局供應口罩</div> */}
     </div>
   );
 }

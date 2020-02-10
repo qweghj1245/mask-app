@@ -23,12 +23,14 @@ interface iAllCount {
 interface iLocation {
   latitude: number,
   longitude: number,
+  init: boolean,
 }
 
 const App = () => {
   const [location, setLocation] = useState<iLocation>({
     latitude: 0,
     longitude: 0,
+    init: true,
   });
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [allPlace, setAllPlace] = useState<iAllPlace[]>([]);
@@ -70,6 +72,7 @@ const App = () => {
       setLocation({
         latitude: pos.coords.latitude,
         longitude: pos.coords.longitude,
+        init: true,
       });
     });
   }
@@ -96,6 +99,7 @@ const App = () => {
     setLocation({
       latitude: e.geometry.coordinates[1],
       longitude: e.geometry.coordinates[0],
+      init: false,
     });
   }
 
@@ -128,7 +132,7 @@ const App = () => {
               </div>
             </div>
             <div className="right">
-              <Map latitude={location.latitude} longitude={location.longitude} allPlace={allPlace} />
+              <Map init={location.init} latitude={location.latitude} longitude={location.longitude} allPlace={allPlace} />
             </div>
           </div>
       }
