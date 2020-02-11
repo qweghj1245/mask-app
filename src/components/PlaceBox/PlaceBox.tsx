@@ -15,9 +15,9 @@ const PlaceBox: FunctionComponent<Props> = ({ place, isSelect = '所有口罩', 
 
   const maskResultColor = (adult: number, child: number): string => {
     const all = adult + child;
-    if (all > 100) {
+    if (all > 200) {
       return 'green';
-    } else if (all >= 50 && all < 100) {
+    } else if (all >= 50 && all < 200) {
       return 'oranges';
     } else {
       return 'red';

@@ -32,7 +32,7 @@ const Map: FunctionComponent<Props> = ({ allPlace, latitude, longitude, init }) 
     });
     if (allMask < 50) {
       return redIcon;
-    } else if (allMask >= 50 && allMask < 100) {
+    } else if (allMask >= 50 && allMask < 200) {
       return orangeIcon;
     } else {
       return greenIcon;
