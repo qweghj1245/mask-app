@@ -51,7 +51,7 @@ const Map: FunctionComponent<Props> = ({ allPlace, latitude, longitude, init }) 
       }).addTo(map.current);
       const cluster = new L.MarkerClusterGroup();
       map.current.addLayer(cluster);
-      allPlace.forEach((item: any, idx: number) => {
+      allPlace.filter((item: any) => item.geometry.coordinates[1] > 0 && item.geometry.coordinates[0] > 0).forEach((item: any, idx: number) => {
         let itemPos = new L.LatLng(item.geometry.coordinates[1], item.geometry.coordinates[0]);
         const pop = L.popup({
           minWidth: 209,
