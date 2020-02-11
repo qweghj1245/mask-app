@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/mask-app/static/css/main.5a61637c.chunk.css",
-    "main.js": "/mask-app/static/js/main.17a674c2.chunk.js",
-    "main.js.map": "/mask-app/static/js/main.17a674c2.chunk.js.map",
+    "main.js": "/mask-app/static/js/main.52e7ed73.chunk.js",
+    "main.js.map": "/mask-app/static/js/main.52e7ed73.chunk.js.map",
     "runtime-main.js": "/mask-app/static/js/runtime-main.bd804b4b.js",
     "runtime-main.js.map": "/mask-app/static/js/runtime-main.bd804b4b.js.map",
     "static/css/2.103ba269.chunk.css": "/mask-app/static/css/2.103ba269.chunk.css",
     "static/js/2.2cb1a79c.chunk.js": "/mask-app/static/js/2.2cb1a79c.chunk.js",
     "static/js/2.2cb1a79c.chunk.js.map": "/mask-app/static/js/2.2cb1a79c.chunk.js.map",
     "index.html": "/mask-app/index.html",
-    "precache-manifest.e152fc355bbffa2cc1c3735f72d85ca3.js": "/mask-app/precache-manifest.e152fc355bbffa2cc1c3735f72d85ca3.js",
+    "precache-manifest.7f6a98b6b35e9d4b252140f6ffdac3b6.js": "/mask-app/precache-manifest.7f6a98b6b35e9d4b252140f6ffdac3b6.js",
     "service-worker.js": "/mask-app/service-worker.js",
     "static/css/2.103ba269.chunk.css.map": "/mask-app/static/css/2.103ba269.chunk.css.map",
     "static/css/main.5a61637c.chunk.css.map": "/mask-app/static/css/main.5a61637c.chunk.css.map",
@@ -25,6 +25,6 @@
     "static/css/2.103ba269.chunk.css",
     "static/js/2.2cb1a79c.chunk.js",
     "static/css/main.5a61637c.chunk.css",
-    "static/js/main.17a674c2.chunk.js"
+    "static/js/main.52e7ed73.chunk.js"
   ]
 }
