@@ -166,7 +166,7 @@ const App = () => {
               <SearchBox search={search} setTab={() => setIsTab(isTab)} getTab={getTab} isSelect={isTab} />
               <div
                 style={{
-                  bottom: `${searchText ? '0px' : `-${domRef?.offsetHeight}px`}`,
+                  bottom: `${searchText ? '0px' : window.innerWidth > 960 ? '0px' : `-${domRef?.offsetHeight}px`}`,
                   transitionDuration: `${searchText ? '.5s' : '0s'}`,
                 }}
                 ref={dom => setDomRef(dom)}
