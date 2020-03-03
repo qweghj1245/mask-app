@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import './App.scss';
 import Loader from 'react-loader-spinner';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
@@ -24,6 +24,7 @@ interface iLocation {
   latitude: number,
   longitude: number,
   init: boolean,
+  zoom: number,
 }
 
 const App = () => {
@@ -31,6 +32,7 @@ const App = () => {
     latitude: 0,
     longitude: 0,
     init: true,
+    zoom: 16,
   });
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [allPlace, setAllPlace] = useState<iAllPlace[]>([]);
@@ -40,12 +42,16 @@ const App = () => {
     start: 30,
     end: 0,
   });
+  const [, forceUpdate] = useState();
+  const startY = useRef(0);
+  const scrollY = useRef(0);
+  const [domRef, setDomRef] = useState<HTMLDivElement | null>();
 
+  /* layout 相關*/
   const getTab = (tab: string) => {
     setIsTab(tab);
   }
-
-  const filterAllPlace = () => {
+  const filterAllPlace = useMemo(() => {
     const { start, end } = allCount;
     if (searchText) {
       return allPlace.filter(item => item.title.includes(searchText) || item.address.includes(searchText));
@@ -54,30 +60,30 @@ const App = () => {
       return allPlace.filter((item: any, idx: number) => idx < start && end > idx);
     }
     return allPlace.filter((item: any, idx: number) => idx < start);
-  };
-
+  }, [allCount, allPlace, searchText]);
   const scrolling = (e: any) => {
+    scrollY.current = e.target.scrollTop;
     if (allCount.start > allPlace.length || searchText) return;
     let top = e.target.scrollTop;
     let height = e.target.scrollHeight;
     if (top / height * 100 > 70) setAllCount({ start: allCount.start + 30, end: allCount.end + 30 });
   }
-
   const search = (e: string) => {
     setSearchText(e);
   }
 
+  /* map 相關*/
   const getGeolocation = () => {
     navigator.geolocation.getCurrentPosition(async (pos) => {
       setLocation({
         latitude: pos.coords.latitude,
         longitude: pos.coords.longitude,
         init: true,
+        zoom: 16,
       });
       setIsLoading(false);
     });
   }
-
   const getMaskData = () => {
     setIsLoading(true);
     axios.get('https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json').then(res => {
@@ -96,14 +102,45 @@ const App = () => {
       setIsLoading(false);
     });
   }
-
-  const setPosition = (e:any) => {
+  const setPosition = (e: any) => {
     setLocation({
       latitude: e.geometry.coordinates[1],
       longitude: e.geometry.coordinates[0],
       init: false,
+      zoom: 18,
     });
   }
+
+  /* touch 相關*/
+  const touchStart = (e: any) => {
+    if (e.touches.length === 1) {
+      if (domRef) {
+        domRef.style.transitionDuration = '0s';
+      }
+      startY.current = e.touches[0].pageY;
+    }
+  }
+  const touchMove = (e: any) => {
+    if (e.touches.length === 1) {
+      if (domRef && scrollY.current === 0) {
+        domRef.style.bottom = `-${e.touches[0].pageY - startY.current}px`;
+      }
+    }
+  };
+  const touchEnd = (e: any) => {
+    if (e.changedTouches.length === 1) {
+      if (domRef) {
+        domRef.style.transitionDuration = '.5s';
+        if (e.changedTouches[0].pageY - startY.current > domRef.offsetHeight / 3 && scrollY.current === 0) {
+          domRef.style.bottom = `-${domRef.offsetHeight}px`;
+          setSearchText('');
+        } else {
+          domRef.style.bottom = '0px';
+        }
+        forceUpdate({});
+      }
+    }
+  };
 
   useEffect(() => {
     Promise.all([getGeolocation(), getMaskData()]);
@@ -127,14 +164,26 @@ const App = () => {
             <div className="left">
               <HeadImage />
               <SearchBox search={search} setTab={() => setIsTab(isTab)} getTab={getTab} isSelect={isTab} />
-              <div className="place-box-wrap" onScroll={scrolling}>
+              <div
+                style={{
+                  bottom: `${searchText ? '0px' : `-${domRef?.offsetHeight}px`}`,
+                  transitionDuration: `${searchText ? '.5s' : '0s'}`,
+                }}
+                ref={dom => setDomRef(dom)}
+                className='place-box-wrap'
+                onScroll={scrolling}
+                onTouchStart={touchStart}
+                onTouchMove={touchMove}
+                onTouchEnd={touchEnd}
+              >
                 {
-                  filterAllPlace().map(place => <PlaceBox key={place.id} place={place} isSelect={isTab} setPosition={setPosition}/>)
+                  filterAllPlace.length ? filterAllPlace.map(place => <PlaceBox key={place.id} place={place} isSelect={isTab} setPosition={setPosition} />) :
+                    <div className='no-data'>{searchText && !filterAllPlace.length ? '無搜尋資料' : ''}</div>
                 }
               </div>
             </div>
             <div className="right">
-              <Map init={location.init} latitude={location.latitude} longitude={location.longitude} allPlace={allPlace} />
+              <Map init={location.init} latitude={location.latitude} longitude={location.longitude} allPlace={allPlace} zoom={location.zoom} />
             </div>
           </div>
       }

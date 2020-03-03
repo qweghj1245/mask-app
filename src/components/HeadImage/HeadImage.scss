@@ -1,3 +1,4 @@
+@import "../../global.scss";
 .image-wrapper {
   width: 100%;
   position: relative;
@@ -38,5 +39,11 @@
       color: white;
       font-size: 12px;
     }
+  }
+}
+
+@include phone {
+  .image-wrapper {
+    display: none;
   }
 }

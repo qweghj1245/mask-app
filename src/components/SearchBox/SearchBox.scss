@@ -1,3 +1,4 @@
+@import "../../global.scss";
 .search-box {
   padding: 16px 20px;
   border-bottom: solid 1px #eaeaea;
@@ -14,6 +15,28 @@
       color: #ff973b;
       font-size: 20px;
       font-weight: bold;
+    }
+  }
+}
+@include phone {
+  .search-box {
+    padding: 12px 15px;
+    border: 0;
+    z-index: 10000;
+    position: fixed;
+    width: 100%;
+    left: 50%;
+    transform: translate(-50%);
+    &.searching-box {
+      background: white;
+    }
+    .tabs {
+      justify-content: center;
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      &.searching-tabs {
+        display: grid;
+      }
     }
   }
 }

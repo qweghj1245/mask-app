@@ -1,3 +1,4 @@
+@import "../../global.scss";
 .place-box {
   padding: 12px 0 8px 20px;
   border-bottom: solid 1px #eaeaea;
@@ -9,8 +10,9 @@
   .orange,
   .yellow {
     width: 130px;
-    padding: 8px 16px;
+    padding: 8px 8px;
     border-radius: 10px;
+    white-space: nowrap;
   }
   .orange {
     background: rgba(#ff973b, 0.2);
@@ -33,10 +35,10 @@
     border-style: solid;
     border-width: 24px 24px 0 0;
     &.oranges {
-      border-color: #FF973B transparent transparent transparent;
+      border-color: #ff973b transparent transparent transparent;
     }
     &.red {
-      border-color: #E6541D transparent transparent transparent;
+      border-color: #e6541d transparent transparent transparent;
     }
     &.green {
       border-color: #46c657 transparent transparent transparent;
@@ -46,7 +48,7 @@
     width: 130px;
     padding: 8px 16px;
     border-radius: 10px;
-    background:#F9F9F9;
-    color: #CCCCCC;
+    background: #f9f9f9;
+    color: #cccccc;
   }
 }

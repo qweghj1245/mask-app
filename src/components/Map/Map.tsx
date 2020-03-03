@@ -13,9 +13,10 @@ interface Props {
   latitude: number,
   longitude: number,
   init: boolean,
+  zoom: number,
 }
 
-const Map: FunctionComponent<Props> = ({ allPlace, latitude, longitude, init }) => {
+const Map: FunctionComponent<Props> = ({ allPlace, latitude, longitude, init, zoom }) => {
   const Icon = (adult: number, child: number) => {
     const allMask = adult + child;
     const redIcon = L.icon({
@@ -44,7 +45,7 @@ const Map: FunctionComponent<Props> = ({ allPlace, latitude, longitude, init }) 
     if (allPlace.length && latitude && longitude) {
       map.current = L.map('map', {
         center: position,
-        zoom: 18,
+        zoom: zoom,
       })
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -95,7 +96,7 @@ const Map: FunctionComponent<Props> = ({ allPlace, latitude, longitude, init }) 
         map.current.remove();
       }
     }
-  }, [allPlace, latitude, longitude, init]);
+  }, [allPlace, latitude, longitude, init, zoom]);
   return (
     <div id="map"></div>
   )

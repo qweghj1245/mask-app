@@ -1,3 +1,4 @@
+@import '../../global.scss';
 .input-wrap {
   position: relative;
   box-shadow: 0px 0px 6px #00000029;
@@ -24,5 +25,12 @@
     &::placeholder {
       color: #cccccc;
     }
+  }
+}
+
+.input-wrap {
+  @include phone {
+    width: 100%;
+    box-shadow: 0px 0px 6px #00000029;
   }
 }

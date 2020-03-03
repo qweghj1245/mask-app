@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import './SearchBox.scss';
 import Tabs from '../Tab/Tab';
 import SearchInput from '../SearchInput/SearchInput';
@@ -12,10 +12,21 @@ interface Props {
 
 const SearchBox: FunctionComponent<Props> = ({ setTab, getTab, isSelect, search }) => {
   const tabGroup: string[] = ['所有口罩', '成人口罩', '兒童口罩'];
+  const [isSearch, setIsSearch] = useState<boolean>(false);
+  const resetSearch = (e:any): void => {
+    let value = e.target.value;
+    if (!value) {
+      search(value);
+      setIsSearch(false);
+    }
+  }
 
   const getValue = (e: any): void => {
-    // console.log(e.target.value);
-    search(e.target.value);
+    let value = e.target.value;
+    if (e.key === 'Enter') {
+      setIsSearch(!!value);
+      search(value);
+    }
   }
 
   const setTabs = (tab: string): void => {
@@ -24,14 +35,13 @@ const SearchBox: FunctionComponent<Props> = ({ setTab, getTab, isSelect, search 
   }
 
   return (
-    <div className="search-box">
-      <SearchInput getValue={getValue} />
-      <div className="tabs">
+    <div className={`search-box ${isSearch ? 'searching-box' : null}`}>
+      <SearchInput getValue={getValue} reset={resetSearch}/>
+      <div className={`tabs ${isSearch ? 'searching-tabs' : null}`}>
         {
           tabGroup.map(tab => <Tabs key={tab} isTab={isSelect === tab} click={() => setTabs(tab)}>{tab}</Tabs>)
         }
       </div>
-      {/* <div className="sub">附近尚有 <span>2</span> 家藥局供應口罩</div> */}
     </div>
   );
 }
