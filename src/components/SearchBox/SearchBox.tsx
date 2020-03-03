@@ -8,9 +8,10 @@ interface Props {
   setTab: any,
   isSelect: string,
   search: any,
+  parentSearch: string,
 }
 
-const SearchBox: FunctionComponent<Props> = ({ setTab, getTab, isSelect, search }) => {
+const SearchBox: FunctionComponent<Props> = ({ setTab, getTab, isSelect, search, parentSearch }) => {
   const tabGroup: string[] = ['所有口罩', '成人口罩', '兒童口罩'];
   const [isSearch, setIsSearch] = useState<boolean>(false);
   const resetSearch = (e:any): void => {
@@ -35,9 +36,9 @@ const SearchBox: FunctionComponent<Props> = ({ setTab, getTab, isSelect, search 
   }
 
   return (
-    <div className={`search-box ${isSearch ? 'searching-box' : null}`}>
-      <SearchInput getValue={getValue} reset={resetSearch}/>
-      <div className={`tabs ${isSearch ? 'searching-tabs' : null}`}>
+    <div className={`search-box ${isSearch&&parentSearch ? 'searching-box' : null}`}>
+      <SearchInput parentSearch={parentSearch} getValue={getValue} reset={resetSearch}/>
+      <div className={`tabs ${isSearch&&parentSearch ? 'searching-tabs' : null}`}>
         {
           tabGroup.map(tab => <Tabs key={tab} isTab={isSelect === tab} click={() => setTabs(tab)}>{tab}</Tabs>)
         }

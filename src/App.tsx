@@ -42,9 +42,9 @@ const App = () => {
     start: 30,
     end: 0,
   });
-  const [, forceUpdate] = useState();
   const startY = useRef(0);
   const scrollY = useRef(0);
+  let checkIsTop = false;
   const [domRef, setDomRef] = useState<HTMLDivElement | null>();
 
   /* layout 相關*/
@@ -63,6 +63,9 @@ const App = () => {
   }, [allCount, allPlace, searchText]);
   const scrolling = (e: any) => {
     scrollY.current = e.target.scrollTop;
+    if (scrollY.current > 0) {
+      checkIsTop = false;
+    }
     if (allCount.start > allPlace.length || searchText) return;
     let top = e.target.scrollTop;
     let height = e.target.scrollHeight;
@@ -114,6 +117,9 @@ const App = () => {
   /* touch 相關*/
   const touchStart = (e: any) => {
     if (e.touches.length === 1) {
+      if (scrollY.current===0) {
+        checkIsTop = true;
+      }
       if (domRef) {
         domRef.style.transitionDuration = '0s';
       }
@@ -121,14 +127,14 @@ const App = () => {
     }
   }
   const touchMove = (e: any) => {
-    if (e.touches.length === 1) {
+    if (e.touches.length === 1&&checkIsTop) {
       if (domRef && scrollY.current === 0) {
         domRef.style.bottom = `-${e.touches[0].pageY - startY.current}px`;
       }
     }
   };
   const touchEnd = (e: any) => {
-    if (e.changedTouches.length === 1) {
+    if (e.changedTouches.length === 1&&checkIsTop) {
       if (domRef) {
         domRef.style.transitionDuration = '.5s';
         if (e.changedTouches[0].pageY - startY.current > domRef.offsetHeight / 3 && scrollY.current === 0) {
@@ -137,7 +143,6 @@ const App = () => {
         } else {
           domRef.style.bottom = '0px';
         }
-        forceUpdate({});
       }
     }
   };
@@ -163,7 +168,7 @@ const App = () => {
           <div className="App">
             <div className="left">
               <HeadImage />
-              <SearchBox search={search} setTab={() => setIsTab(isTab)} getTab={getTab} isSelect={isTab} />
+              <SearchBox parentSearch={searchText} search={search} setTab={() => setIsTab(isTab)} getTab={getTab} isSelect={isTab} />
               <div
                 style={{
                   bottom: `${searchText ? '0px' : window.innerWidth > 960 ? '0px' : `-${domRef?.offsetHeight}px`}`,
