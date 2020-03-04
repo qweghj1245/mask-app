@@ -18,6 +18,9 @@
     }
   }
 }
+.back-list {
+  display: none;
+}
 @include phone {
   .search-box {
     padding: 12px 15px;
@@ -37,6 +40,25 @@
       &.searching-tabs {
         display: grid;
       }
+    }
+  }
+  .back-list {
+    background: #FF973B;
+    padding: 10px 15px;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+    position: absolute;
+    top: 64px;
+    z-index: 100000;
+    text-align: left;
+    align-items: center;
+    .arrow {
+      margin-right: 8px;
+    }
+    &.block {
+      display: flex;
     }
   }
 }

@@ -7,6 +7,7 @@ import Map from './components/Map/Map';
 import SearchBox from './components/SearchBox/SearchBox';
 import HeadImage from './components/HeadImage/HeadImage';
 import PlaceBox from './components/PlaceBox/PlaceBox';
+// import { ReactComponent as Lgpic } from './assets/icon_lgpic.svg';
 interface iAllPlace {
   id: string,
   title: string,
@@ -26,7 +27,9 @@ interface iLocation {
   init: boolean,
   zoom: number,
 }
-
+let stashSearch = '';
+let checkIsTop = false;
+let isSetLocation = false;
 const App = () => {
   const [location, setLocation] = useState<iLocation>({
     latitude: 0,
@@ -44,7 +47,6 @@ const App = () => {
   });
   const startY = useRef(0);
   const scrollY = useRef(0);
-  let checkIsTop = false;
   const [domRef, setDomRef] = useState<HTMLDivElement | null>();
 
   /* layout 相關*/
@@ -72,8 +74,13 @@ const App = () => {
     if (top / height * 100 > 70) setAllCount({ start: allCount.start + 30, end: allCount.end + 30 });
   }
   const search = (e: string) => {
+    stashSearch = e;
     setSearchText(e);
   }
+  const resetList = () => {
+    isSetLocation = false;
+    setSearchText(stashSearch);
+  };
 
   /* map 相關*/
   const getGeolocation = () => {
@@ -112,12 +119,17 @@ const App = () => {
       init: false,
       zoom: 18,
     });
+    if (domRef && window.innerWidth < 960) {
+      isSetLocation = true;
+      domRef.style.bottom = `-${domRef.offsetHeight}px`;
+      setSearchText('');
+    }
   }
 
   /* touch 相關*/
   const touchStart = (e: any) => {
     if (e.touches.length === 1) {
-      if (scrollY.current===0) {
+      if (scrollY.current === 0) {
         checkIsTop = true;
       }
       if (domRef) {
@@ -127,14 +139,14 @@ const App = () => {
     }
   }
   const touchMove = (e: any) => {
-    if (e.touches.length === 1&&checkIsTop) {
+    if (e.touches.length === 1 && checkIsTop) {
       if (domRef && scrollY.current === 0) {
         domRef.style.bottom = `-${e.touches[0].pageY - startY.current}px`;
       }
     }
   };
   const touchEnd = (e: any) => {
-    if (e.changedTouches.length === 1&&checkIsTop) {
+    if (e.changedTouches.length === 1 && checkIsTop) {
       if (domRef) {
         domRef.style.transitionDuration = '.5s';
         if (e.changedTouches[0].pageY - startY.current > domRef.offsetHeight / 3 && scrollY.current === 0) {
@@ -168,7 +180,15 @@ const App = () => {
           <div className="App">
             <div className="left">
               <HeadImage />
-              <SearchBox parentSearch={searchText} search={search} setTab={() => setIsTab(isTab)} getTab={getTab} isSelect={isTab} />
+              <SearchBox
+                parentSearch={searchText}
+                search={search}
+                setTab={() => setIsTab(isTab)}
+                getTab={getTab}
+                isSelect={isTab}
+                resetList={resetList}
+                isSetLocation={isSetLocation}
+              />
               <div
                 style={{
                   bottom: `${searchText ? '0px' : window.innerWidth > 960 ? '0px' : `-${domRef?.offsetHeight}px`}`,
@@ -181,10 +201,13 @@ const App = () => {
                 onTouchMove={touchMove}
                 onTouchEnd={touchEnd}
               >
-                {
-                  filterAllPlace.length ? filterAllPlace.map(place => <PlaceBox key={place.id} place={place} isSelect={isTab} setPosition={setPosition} />) :
-                    <div className='no-data'>{searchText && !filterAllPlace.length ? '無搜尋資料' : ''}</div>
-                }
+                {/* <Lgpic className='lg-pic' /> */}
+                <div className="overflow">
+                  {
+                    filterAllPlace.length ? filterAllPlace.map(place => <PlaceBox key={place.id} place={place} isSelect={isTab} setPosition={setPosition} />) :
+                      <div className='no-data'>{searchText && !filterAllPlace.length ? '無搜尋資料' : ''}</div>
+                  }
+                </div>
               </div>
             </div>
             <div className="right">

@@ -13,4 +13,4 @@ const Tabs: FunctionComponent<Props> = ({ isTab, children, click }) => {
   );
 }
 
-export default React.memo(Tabs, () => false);
+export default React.memo(Tabs);
