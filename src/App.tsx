@@ -74,6 +74,10 @@ const App = () => {
     if (top / height * 100 > 70) setAllCount({ start: allCount.start + 30, end: allCount.end + 30 });
   }
   const search = (e: string) => {
+    const d = document.querySelector('.overflow');
+    if (d) {
+      d.scrollTop = 0;
+    }
     stashSearch = e;
     setSearchText(e);
   }
