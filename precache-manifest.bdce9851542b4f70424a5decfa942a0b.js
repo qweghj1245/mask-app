@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f7274db96bfb366a699744ad63aea20d",
+    "revision": "7e1df9be10234fb16de3607acdfe1293",
     "url": "/mask-app/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/mask-app/static/css/2.103ba269.chunk.css"
   },
   {
-    "revision": "a8e61a89da42687126c7",
-    "url": "/mask-app/static/css/main.683b596b.chunk.css"
+    "revision": "56de386541759297e849",
+    "url": "/mask-app/static/css/main.597d6360.chunk.css"
   },
   {
     "revision": "8cdfe564ad9b9a450daa",
@@ -20,12 +20,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/mask-app/static/js/2.5ddbac0f.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a8e61a89da42687126c7",
-    "url": "/mask-app/static/js/main.b0d27a4b.chunk.js"
+    "revision": "56de386541759297e849",
+    "url": "/mask-app/static/js/main.6142b08e.chunk.js"
   },
   {
     "revision": "4e88a1a28ade3593e39a",
     "url": "/mask-app/static/js/runtime-main.bd804b4b.js"
+  },
+  {
+    "revision": "360bd8e6977fb7e4f4196563e75d54d8",
+    "url": "/mask-app/static/media/Ico_ios_arrowback.360bd8e6.svg"
   },
   {
     "revision": "b031773073b2c659f0892d66786d26c9",
