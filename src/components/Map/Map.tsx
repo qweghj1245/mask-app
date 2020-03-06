@@ -47,7 +47,7 @@ const Map: FunctionComponent<Props> = ({ allPlace, latitude, longitude, init, zo
         center: position,
         zoom: zoom,
       });
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWF6dXN1IiwiYSI6ImNqeHJ1ZjNsZDBjdmozb255bWp1amVlanAifQ.F4cB_QNqHJ3Hj--xUgE3AQ', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map.current);
       const cluster = new L.MarkerClusterGroup();
@@ -87,6 +87,8 @@ const Map: FunctionComponent<Props> = ({ allPlace, latitude, longitude, init, zo
           }
         });
         if (item.geometry.coordinates[1] === latitude && item.geometry.coordinates[0] === longitude && !init) {
+          const offset = map.current.getSize().x*0.35;
+          map.current.panBy(new L.Point(0, -offset), {animate: false});
           mrks.openPopup();
         }
       })
