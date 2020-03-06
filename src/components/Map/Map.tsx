@@ -87,8 +87,10 @@ const Map: FunctionComponent<Props> = ({ allPlace, latitude, longitude, init, zo
           }
         });
         if (item.geometry.coordinates[1] === latitude && item.geometry.coordinates[0] === longitude && !init) {
-          const offset = map.current.getSize().x*0.35;
-          map.current.panBy(new L.Point(0, -offset), {animate: false});
+          if (window.innerWidth < 960) {
+            const offset = map.current.getSize().x*0.3;
+            map.current.panBy(new L.Point(0, -offset), {animate: false});
+          }
           mrks.openPopup();
         }
       })
